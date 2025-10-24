@@ -33,10 +33,6 @@ export default function ListingDetailsModal({
   const handleConfirmPurchase = async () => {
     if (!item) return
     
-    // Debug logging
-    console.log('KYC Status:', kycStatus)
-    console.log('KYC Status Status:', kycStatus?.status)
-    onLog('debug.kycCheck', { kycStatus, itemId: item.id })
     
     // Check if user is already KYC verified
     if (kycStatus?.status === 'completed' || kycStatus?.status === 'approved') {
@@ -139,8 +135,6 @@ export default function ListingDetailsModal({
 
   if (!isOpen || !item) return null
 
-  // Debug logging for modal rendering
-  console.log('Modal rendering - KYC Status:', kycStatus, 'Item:', item.title)
 
   return (
     <>
@@ -230,10 +224,6 @@ export default function ListingDetailsModal({
               </div>
             )}
             
-            {/* Debug KYC Status */}
-            <div className="debug-kyc-status" style={{background: '#f0f0f0', padding: '0.5rem', margin: '1rem 0', fontSize: '0.8rem'}}>
-              <strong>Debug - KYC Status:</strong> {JSON.stringify(kycStatus)}
-            </div>
             
             <div className="modal-actions">
               {item && purchasedItems.has(item.id) ? (
