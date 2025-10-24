@@ -156,16 +156,36 @@ body {
 
 .verification-container {
   min-height: 500px;
+  height: 500px;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   overflow: hidden;
   background: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .verification-container iframe {
   width: 100%;
   height: 100%;
   border: 0;
+  flex: 1;
+}
+
+/* Ensure Persona Inquiry component fills the container */
+.verification-container > div {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.verification-container > div > iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  flex: 1;
 }
 
 /* Setup steps */

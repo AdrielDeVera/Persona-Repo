@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PersonaReact } from 'persona-react'
+import Inquiry from 'persona-react'
 import { completeKYC, fetchKYCStatus, KYCStatus } from '../api/client'
 
 interface SellerInlineProps {
@@ -50,8 +50,9 @@ export default function SellerInline({ onLog, onStatusChange }: SellerInlineProp
     onLog(`seller.${name}`, meta)
   }
 
-  const templateId = import.meta.env.VITE_SELLER_TEMPLATE_ID
-  const environment = import.meta.env.VITE_PERSONA_ENVIRONMENT as 'sandbox' | 'production'
+  // Hardcoded template ID for seller verification demo (same as buyer)
+  const templateId = 'itmpl_uHaDfigwShJ4xo4KUVqk14tcjJzU'
+  const environment = 'sandbox' as 'sandbox' | 'production'
 
   if (!templateId) {
     return (
@@ -72,9 +73,11 @@ export default function SellerInline({ onLog, onStatusChange }: SellerInlineProp
       </div>
 
       <div className="verification-container">
-        <PersonaReact
+        <Inquiry
           templateId={templateId}
           environment={environment}
+          frameHeight="500px"
+          frameWidth="100%"
           onComplete={handleComplete}
           onError={handleError}
           onEvent={handleEvent}
