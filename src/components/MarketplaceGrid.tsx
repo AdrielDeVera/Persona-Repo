@@ -12,6 +12,7 @@ export interface MarketplaceItem {
 
 interface MarketplaceGridProps {
   onItemClick: (item: MarketplaceItem) => void
+  purchasedItems: Set<string>
 }
 
 const mockItems: MarketplaceItem[] = [
@@ -105,7 +106,7 @@ const mockItems: MarketplaceItem[] = [
   }
 ]
 
-export default function MarketplaceGrid({ onItemClick }: MarketplaceGridProps) {
+export default function MarketplaceGrid({ onItemClick, purchasedItems }: MarketplaceGridProps) {
   return (
     <div className="marketplace-grid">
       <div className="marketplace-header">
@@ -114,37 +115,46 @@ export default function MarketplaceGrid({ onItemClick }: MarketplaceGridProps) {
       </div>
       
       <div className="items-grid">
-        {mockItems.map((item) => (
-          <div key={item.id} className="item-card">
-            <div className="item-image">
-              <img src={item.image} alt={item.title} />
-              <div className="item-condition">{item.condition}</div>
-            </div>
-            
-            <div className="item-content">
-              <h3 className="item-title">{item.title}</h3>
-              <p className="item-description">{item.description}</p>
-              
-              <div className="item-details">
-                <div className="item-price">${item.price.toFixed(2)}</div>
-                <div className="item-seller">by {item.seller}</div>
-                <div className="item-location">{item.location}</div>
+        {mockItems.map((item) => {
+          const isPurchased = purchasedItems.has(item.id)
+          return (
+            <div key={item.id} className={`item-card ${isPurchased ? 'purchased' : ''}`}>
+              <div className="item-image">
+                <img src={item.image} alt={item.title} />
+                <div className="item-condition">{item.condition}</div>
+                {isPurchased && (
+                  <div className="purchased-overlay">
+                    <div className="purchased-badge">✓ Purchased</div>
+                  </div>
+                )}
               </div>
               
-              <div className="item-actions">
-                <button 
-                  className="buy-button"
-                  onClick={() => onItemClick(item)}
-                >
-                  Buy
-                </button>
-                <button className="message-button">
-                  Message Seller
-                </button>
+              <div className="item-content">
+                <h3 className="item-title">{item.title}</h3>
+                <p className="item-description">{item.description}</p>
+                
+                <div className="item-details">
+                  <div className="item-price">${item.price.toFixed(2)}</div>
+                  <div className="item-seller">by {item.seller}</div>
+                  <div className="item-location">{item.location}</div>
+                </div>
+                
+                <div className="item-actions">
+                  <button 
+                    className={`buy-button ${isPurchased ? 'disabled' : ''}`}
+                    onClick={() => onItemClick(item)}
+                    disabled={isPurchased}
+                  >
+                    {isPurchased ? 'Purchased' : 'Buy'}
+                  </button>
+                  <button className="message-button">
+                    Message Seller
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )

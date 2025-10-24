@@ -10,6 +10,7 @@ interface ListingDetailsModalProps {
   onClose: () => void
   onLog: (name: string, meta: unknown) => void
   onOrderPlaced: (item: MarketplaceItem) => void
+  purchasedItems?: Set<string>
 }
 
 export default function ListingDetailsModal({ 
@@ -17,7 +18,8 @@ export default function ListingDetailsModal({
   isOpen, 
   onClose, 
   onLog, 
-  onOrderPlaced 
+  onOrderPlaced,
+  purchasedItems = new Set()
 }: ListingDetailsModalProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -119,7 +121,8 @@ export default function ListingDetailsModal({
           <div className="modal success-modal">
             <div className="success-content">
               <div className="success-icon">✅</div>
-              <h2>Verified & Order Placed!</h2>
+              <h2>Verification Successful!</h2>
+              <p>Thanks for your purchase!</p>
               <p>Your order for <strong>{item.title}</strong> has been successfully placed.</p>
               <p>You will receive a confirmation email shortly.</p>
               <button className="close-button" onClick={handleClose}>
@@ -193,20 +196,31 @@ export default function ListingDetailsModal({
             )}
             
             <div className="modal-actions">
-              <button 
-                className="confirm-purchase-button"
-                onClick={handleConfirmPurchase}
-                disabled={isLoading || isModalOpen}
-              >
-                {isLoading ? 'Starting verification...' : 'Confirm Purchase'}
-              </button>
-              
-              <div className="verification-note">
-                <small>
-                  Identity verification is required to complete your purchase. 
-                  This process takes approximately 2 minutes.
-                </small>
-              </div>
+              {item && purchasedItems.has(item.id) ? (
+                <div className="already-purchased">
+                  <div className="purchased-status">
+                    <span className="purchased-icon">✓</span>
+                    <span>This item has already been purchased</span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <button 
+                    className="confirm-purchase-button"
+                    onClick={handleConfirmPurchase}
+                    disabled={isLoading || isModalOpen}
+                  >
+                    {isLoading ? 'Starting verification...' : 'Confirm Purchase'}
+                  </button>
+                  
+                  <div className="verification-note">
+                    <small>
+                      Identity verification is required to complete your purchase. 
+                      This process takes approximately 2 minutes.
+                    </small>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

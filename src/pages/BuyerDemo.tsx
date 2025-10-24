@@ -9,8 +9,14 @@ interface BuyerDemoProps {
 export default function BuyerDemo({ onLog }: BuyerDemoProps) {
   const [selectedItem, setSelectedItem] = useState<MarketplaceItem | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [purchasedItems, setPurchasedItems] = useState<Set<string>>(new Set())
 
   const handleItemClick = (item: MarketplaceItem) => {
+    // Don't allow clicking on already purchased items
+    if (purchasedItems.has(item.id)) {
+      return
+    }
+    
     setSelectedItem(item)
     setIsModalOpen(true)
     onLog('marketplace.itemSelected', { itemId: item.id, title: item.title })
@@ -22,12 +28,16 @@ export default function BuyerDemo({ onLog }: BuyerDemoProps) {
   }
 
   const handleOrderPlaced = (item: MarketplaceItem) => {
+    setPurchasedItems(prev => new Set([...prev, item.id]))
     onLog('marketplace.orderPlaced', { itemId: item.id, title: item.title })
   }
 
   return (
     <div className="buyer-demo">
-      <MarketplaceGrid onItemClick={handleItemClick} />
+      <MarketplaceGrid 
+        onItemClick={handleItemClick} 
+        purchasedItems={purchasedItems}
+      />
       
       <ListingDetailsModal
         item={selectedItem}
@@ -35,6 +45,7 @@ export default function BuyerDemo({ onLog }: BuyerDemoProps) {
         onClose={handleModalClose}
         onLog={onLog}
         onOrderPlaced={handleOrderPlaced}
+        purchasedItems={purchasedItems}
       />
     </div>
   )
