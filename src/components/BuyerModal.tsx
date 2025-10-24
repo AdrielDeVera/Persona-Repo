@@ -15,14 +15,9 @@ export default function BuyerModal({ onLog, onStatusChange }: BuyerModalProps) {
     setIsLoading(true)
     setError(null)
 
-    const templateId = import.meta.env.VITE_BUYER_TEMPLATE_ID
-    const environment = import.meta.env.VITE_PERSONA_ENVIRONMENT as 'sandbox' | 'production'
-
-    if (!templateId) {
-      setError('Buyer template ID not configured')
-      setIsLoading(false)
-      return
-    }
+    // Hardcoded template ID for buyer verification demo
+    const templateId = 'itmpl_uHaDfigwShJ4xo4KUVqk14tcjJzU'
+    const environment = 'sandbox' as 'sandbox' | 'production'
 
     const callbacks: PersonaCallbacks = {
       onLoad: () => {

@@ -2,6 +2,8 @@
 
 A comprehensive React + TypeScript demonstration of Persona KYC integration featuring both **Buyer (modal)** and **Seller (inline)** flows.
 
+> **Note**: This version has been configured with a hardcoded buyer template ID (`itmpl_uHaDfigwShJ4xo4KUVqk14tcjJzU`) for immediate testing of the buyer verification flow.
+
 ## Features
 
 - **Buyer Flow**: Modal-based verification using Persona's JS SDK
@@ -45,7 +47,7 @@ Edit `env.local` with your actual values:
 ```env
 # Persona Configuration
 VITE_PERSONA_ENVIRONMENT=sandbox
-VITE_BUYER_TEMPLATE_ID=itmpl_your_actual_buyer_template_id
+VITE_BUYER_TEMPLATE_ID=itmpl_uHaDfigwShJ4xo4KUVqk14tcjJzU
 VITE_SELLER_TEMPLATE_ID=itmpl_your_actual_seller_template_id
 
 # Webhook Secret (server-side only)
