@@ -11,7 +11,7 @@ export interface PersonaCallbacks {
   onReady?: () => void
   onComplete?: (payload: { inquiryId: string; status: string; fields?: Record<string, unknown> }) => void
   onCancel?: () => void
-  onError?: (error: Error) => void
+  onError?: (error: any) => void
   onEvent?: (name: string, meta: unknown) => void
 }
 
