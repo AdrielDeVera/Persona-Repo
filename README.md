@@ -246,5 +246,3 @@ For this demo:
 - Check the event logs in the LogPanel
 - Review the Admin dashboard for status information
 - Use browser dev tools to inspect network requests
-#   P e r s o n a - R e p o  
- 
