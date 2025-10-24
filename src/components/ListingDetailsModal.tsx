@@ -11,6 +11,8 @@ interface ListingDetailsModalProps {
   onLog: (name: string, meta: unknown) => void
   onOrderPlaced: (item: MarketplaceItem) => void
   purchasedItems?: Set<string>
+  kycStatus?: KYCStatus | null
+  onKYCStatusChange?: (status: KYCStatus) => void
 }
 
 export default function ListingDetailsModal({ 
@@ -19,17 +21,43 @@ export default function ListingDetailsModal({
   onClose, 
   onLog, 
   onOrderPlaced,
-  purchasedItems = new Set()
+  purchasedItems = new Set(),
+  kycStatus,
+  onKYCStatusChange
 }: ListingDetailsModalProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [kycStatus, setKycStatus] = useState<KYCStatus | null>(null)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
   const { isModalOpen, setIsModalOpen } = usePersonaModal()
 
   const handleConfirmPurchase = async () => {
     if (!item) return
     
+    // Debug logging
+    console.log('KYC Status:', kycStatus)
+    console.log('KYC Status Status:', kycStatus?.status)
+    onLog('debug.kycCheck', { kycStatus, itemId: item.id })
+    
+    // Check if user is already KYC verified
+    if (kycStatus?.status === 'completed' || kycStatus?.status === 'approved') {
+      console.log('Skipping KYC - user is verified')
+      // Skip KYC and directly place order
+      setIsLoading(true)
+      try {
+        onOrderPlaced(item)
+        setShowSuccessModal(true)
+        onLog('marketplace.orderPlacedDirect', { itemId: item.id, title: item.title, kycSkipped: true })
+      } catch (err) {
+        console.error('Failed to place order:', err)
+        setError('Failed to place order')
+      } finally {
+        setIsLoading(false)
+      }
+      return
+    }
+    
+    console.log('Proceeding with KYC verification')
+    // Proceed with KYC verification
     setIsLoading(true)
     setError(null)
 
@@ -51,15 +79,21 @@ export default function ListingDetailsModal({
         try {
           await completeKYC('buyer', payload.inquiryId, payload.status)
           const status = await fetchKYCStatus('buyer')
-          setKycStatus(status)
           
-          if (status.status === 'approved') {
+          console.log('KYC Complete - Fetched Status:', status)
+          
+          if (onKYCStatusChange) {
+            console.log('Calling onKYCStatusChange with:', status)
+            onKYCStatusChange(status)
+          }
+          
+          if (status.status === 'completed' || status.status === 'approved') {
             // Show success modal and place order
             setShowSuccessModal(true)
             onOrderPlaced(item)
             onLog('buyer.orderPlaced', { itemId: item.id, status: status.status })
           } else {
-            setError('Verification was not approved. Please try again.')
+            setError('Verification was not completed. Please try again.')
           }
         } catch (err) {
           console.error('Failed to complete buyer KYC:', err)
@@ -99,12 +133,14 @@ export default function ListingDetailsModal({
 
   const handleClose = () => {
     setError(null)
-    setKycStatus(null)
     setShowSuccessModal(false)
     onClose()
   }
 
   if (!isOpen || !item) return null
+
+  // Debug logging for modal rendering
+  console.log('Modal rendering - KYC Status:', kycStatus, 'Item:', item.title)
 
   return (
     <>
@@ -183,7 +219,7 @@ export default function ListingDetailsModal({
               </div>
             )}
             
-            {kycStatus && kycStatus.status !== 'approved' && (
+            {kycStatus && kycStatus.status !== 'completed' && kycStatus.status !== 'approved' && (
               <div className="kyc-status">
                 <h4>Verification Status</h4>
                 <div className={`status-badge ${kycStatus.status || 'pending'}`}>
@@ -195,6 +231,11 @@ export default function ListingDetailsModal({
               </div>
             )}
             
+            {/* Debug KYC Status */}
+            <div className="debug-kyc-status" style={{background: '#f0f0f0', padding: '0.5rem', margin: '1rem 0', fontSize: '0.8rem'}}>
+              <strong>Debug - KYC Status:</strong> {JSON.stringify(kycStatus)}
+            </div>
+            
             <div className="modal-actions">
               {item && purchasedItems.has(item.id) ? (
                 <div className="already-purchased">
@@ -205,20 +246,38 @@ export default function ListingDetailsModal({
                 </div>
               ) : (
                 <>
-                  <button 
-                    className="confirm-purchase-button"
-                    onClick={handleConfirmPurchase}
-                    disabled={isLoading || isModalOpen}
-                  >
-                    {isLoading ? 'Starting verification...' : 'Confirm Purchase'}
-                  </button>
-                  
-                  <div className="verification-note">
-                    <small>
-                      Identity verification is required to complete your purchase. 
-                      This process takes approximately 2 minutes.
-                    </small>
-                  </div>
+                  {kycStatus?.status === 'completed' || kycStatus?.status === 'approved' ? (
+                    <div className="verified-user-section">
+                      <div className="verified-status">
+                        <span className="verified-icon">✓</span>
+                        <span>You are verified! No additional verification needed.</span>
+                      </div>
+                      <button 
+                        className="confirm-purchase-button verified"
+                        onClick={handleConfirmPurchase}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? 'Placing order...' : 'Confirm Purchase'}
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <button 
+                        className="confirm-purchase-button"
+                        onClick={handleConfirmPurchase}
+                        disabled={isLoading || isModalOpen}
+                      >
+                        {isLoading ? 'Starting verification...' : 'Confirm Purchase'}
+                      </button>
+                      
+                      <div className="verification-note">
+                        <small>
+                          Identity verification is required to complete your purchase. 
+                          This process takes approximately 2 minutes.
+                        </small>
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </div>

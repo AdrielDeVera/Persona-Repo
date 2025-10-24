@@ -18,7 +18,7 @@ export async function getJSON<T>(url: string): Promise<T> {
 
 export interface KYCStatus {
   role: 'buyer' | 'seller'
-  status: 'approved' | 'referred' | 'declined' | 'pending' | null
+  status: 'approved' | 'completed' | 'referred' | 'declined' | 'pending' | null
   inquiryId?: string
 }
 
