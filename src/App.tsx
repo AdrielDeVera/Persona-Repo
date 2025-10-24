@@ -73,8 +73,6 @@ function App() {
         
         {currentPage === 'admin' && (
           <div className="sidebar">
-            <ConfigPanel />
-            <LogPanel logs={logs} />
           </div>
         )}
       </div>
