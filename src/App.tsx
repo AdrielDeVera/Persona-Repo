@@ -71,10 +71,12 @@ function App() {
           {renderPage()}
         </div>
         
-        <div className="sidebar">
-          <ConfigPanel />
-          <LogPanel logs={logs} />
-        </div>
+        {currentPage === 'admin' && (
+          <div className="sidebar">
+            <ConfigPanel />
+            <LogPanel logs={logs} />
+          </div>
+        )}
       </div>
     </div>
   )

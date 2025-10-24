@@ -103,12 +103,12 @@ export default function ListingDetailsModal({
       onCancel: () => {
         onLog('buyer.onCancel', { itemId: item.id })
         setIsModalOpen(false)
-        setError('Verification cancelled. You can try again.')
+        setError('Verification was canceled. Please try again.')
       },
       onError: (error) => {
         onLog('buyer.onError', { error: error.message, itemId: item.id })
         setIsModalOpen(false)
-        setError(`Verification error: ${error.message}`)
+        setError(`We couldn't verify your identity. You can retry verification.`)
       },
       onEvent: (name, meta) => {
         onLog(`buyer.${name}`, { meta, itemId: item.id })
@@ -157,10 +157,9 @@ export default function ListingDetailsModal({
           <div className="modal success-modal">
             <div className="success-content">
               <div className="success-icon">✅</div>
-              <h2>Verification Successful!</h2>
-              <p>Thanks for your purchase!</p>
-              <p>Your order for <strong>{item.title}</strong> has been successfully placed.</p>
-              <p>You will receive a confirmation email shortly.</p>
+              <h2>Verified & Order Placed</h2>
+              <p>Thanks! Your identity is verified and your order for <strong>{item.title}</strong> is on the way.</p>
+              <p>You'll receive a confirmation email shortly with shipping details.</p>
               <button className="close-button" onClick={handleClose}>
                 Close
               </button>
@@ -173,7 +172,7 @@ export default function ListingDetailsModal({
       <div className="modal-overlay">
         <div className="modal listing-details-modal">
           <div className="modal-header">
-            <h2>Listing Details</h2>
+            <h2>{item.title}</h2>
             <button className="close-button" onClick={handleClose}>×</button>
           </div>
           
@@ -272,8 +271,7 @@ export default function ListingDetailsModal({
                       
                       <div className="verification-note">
                         <small>
-                          Identity verification is required to complete your purchase. 
-                          This process takes approximately 2 minutes.
+                          Launching verification… complete the Persona flow to continue.
                         </small>
                       </div>
                     </>

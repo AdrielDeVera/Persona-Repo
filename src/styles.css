@@ -243,6 +243,35 @@ body {
   color: #2563eb;
 }
 
+/* Item badges */
+.item-badges {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.badge.handmade {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.small-batch {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
 /* Status badges */
 .status-badge {
   display: inline-block;
@@ -517,6 +546,23 @@ body {
 /* Admin */
 .admin {
   padding: 2rem;
+}
+
+/* Admin page layout */
+.admin-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.admin-main {
+  flex: 1;
+}
+
+.admin-sidebar {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .admin-header {
