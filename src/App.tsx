@@ -53,7 +53,7 @@ function App() {
           </button>
           <button 
             className={currentPage === 'seller' ? 'active' : ''} 
-            onClick={() => setCurrentPage('seller')}
+            // onClick={() => setCurrentPage('seller')}
           >
             Seller Flow (Inline)
           </button>
