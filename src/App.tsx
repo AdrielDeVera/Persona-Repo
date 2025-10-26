@@ -53,7 +53,7 @@ function App() {
           </button>
           <button 
             className={currentPage === 'seller' ? 'active' : ''} 
-            onClick={() => setCurrentPage('seller')}
+            // onClick={() => setCurrentPage('seller')}
           >
             Seller Flow (Inline)
           </button>
@@ -71,10 +71,10 @@ function App() {
           {renderPage()}
         </div>
         
-        <div className="sidebar">
-          <ConfigPanel />
-          <LogPanel logs={logs} />
-        </div>
+        {currentPage === 'admin' && (
+          <div className="sidebar">
+          </div>
+        )}
       </div>
     </div>
   )

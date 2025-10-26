@@ -11,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
+  background-color: #FCE8D1;
   color: #333;
 }
 
@@ -31,7 +31,7 @@ body {
 
 .app-header h1 {
   margin-bottom: 1rem;
-  color: #2563eb;
+  color: #B7771C;
 }
 
 .nav-tabs {
@@ -49,13 +49,14 @@ body {
 }
 
 .nav-tabs button:hover {
-  background: #f9fafb;
+  background: #FCE8D1;
 }
 
 .nav-tabs button.active {
-  background: #2563eb;
-  color: white;
-  border-color: #2563eb;
+  background: #FDBA74;
+  color: #B7771C;
+  border-color: #FDBA74;
+  font-weight: 600;
 }
 
 /* Main content */
@@ -90,7 +91,7 @@ body {
 }
 
 .demo-header h1 {
-  color: #2563eb;
+  color: #B7771C;
   margin-bottom: 0.5rem;
 }
 
@@ -105,7 +106,7 @@ body {
   padding: 2rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background: #f9fafb;
+  background: #FDEAD6;
 }
 
 .buyer-modal h2 {
@@ -114,19 +115,19 @@ body {
 }
 
 .verify-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .verify-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .verify-button:disabled {
@@ -156,25 +157,371 @@ body {
 
 .verification-container {
   min-height: 500px;
+  height: 500px;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   overflow: hidden;
   background: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .verification-container iframe {
   width: 100%;
   height: 100%;
   border: 0;
+  flex: 1;
 }
 
-/* Setup steps */
+/* Ensure Persona Inquiry component fills the container */
+.verification-container > div {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.verification-container > div > iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  flex: 1;
+}
+
+/* Progress Pills for Onboarding */
+.progress-pills {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #FDEAD6;
+  border-radius: 0.5rem;
+}
+
+.pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  position: relative;
+}
+
+.pill:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: #d1d5db;
+  z-index: 0;
+}
+
+.pill.completed::after {
+  background: #10b981;
+}
+
+.pill-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  background: #d1d5db;
+  color: #6b7280;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.pill.completed .pill-circle {
+  background: #10b981;
+  color: white;
+}
+
+.pill.current .pill-circle {
+  background: #FDBA74;
+  color: #B7771C;
+  font-weight: 700;
+}
+
+.pill.disabled .pill-circle {
+  background: #e5e7eb;
+  color: #9ca3af;
+}
+
+.pill-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  color: #374151;
+}
+
+.pill.disabled .pill-title {
+  color: #9ca3af;
+}
+
+/* Onboarding Steps */
+.onboarding-step {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.step-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.step-content h2 {
+  color: #374151;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.step-description {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.primary-button {
+  background: #FDBA74;
+  color: #B7771C;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: #FBBE7E;
+}
+
+.primary-button:disabled,
+.primary-button.disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Step Actions */
+.step-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.demo-note {
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Bank Account Form */
+.bank-account-form {
+  background: #FDEAD6;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.form-section h3 {
+  color: #374151;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: white;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.form-help {
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Verification Info */
+.verification-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.info-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.info-value.verified {
+  color: #059669;
+}
+
+.info-value.pending {
+  color: #d97706;
+}
+
+/* Legacy Bank Account Preview - keeping for backward compatibility */
+.bank-account-preview {
+  background: #FDEAD6;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 400px;
+  animation: slideIn 0.3s ease;
+}
+
+.toast.success {
+  border-left: 4px solid #10b981;
+  background: #f0fdf4;
+}
+
+.toast.error {
+  border-left: 4px solid #ef4444;
+  background: #fef2f2;
+}
+
+.toast.info {
+  border-left: 4px solid #FDBA74;
+  background: #FDEAD6;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.toast-close:hover {
+  color: #374151;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Legacy setup steps - keeping for backward compatibility */
 .setup-steps {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: #FDEAD6;
   border-radius: 0.5rem;
 }
 
@@ -220,8 +567,9 @@ body {
 }
 
 .step.current .step-number {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
+  font-weight: 700;
 }
 
 .step-title {
@@ -240,7 +588,37 @@ body {
 }
 
 .step.current .step-status {
-  color: #2563eb;
+  color: #B7771C;
+  font-weight: 600;
+}
+
+/* Item badges */
+.item-badges {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.badge.handmade {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.small-batch {
+  background: #FDEAD6;
+  color: #B7771C;
 }
 
 /* Status badges */
@@ -254,6 +632,11 @@ body {
 }
 
 .status-badge.approved {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.completed {
   background: #dcfce7;
   color: #166534;
 }
@@ -286,19 +669,19 @@ body {
 }
 
 .guarded-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .guarded-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .guarded-button:disabled {
@@ -333,7 +716,7 @@ body {
   padding: 1.5rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background: #f9fafb;
+  background: #FDEAD6;
 }
 
 .order-section h3,
@@ -345,14 +728,14 @@ body {
 /* Status info */
 .status-info {
   padding: 1rem;
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.375rem;
 }
 
 .status-info h4 {
   margin-bottom: 0.5rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 /* Error messages */
@@ -409,14 +792,14 @@ body {
 .config-note {
   margin-top: 1.5rem;
   padding: 1rem;
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.375rem;
 }
 
 .config-note h4 {
   margin-bottom: 0.5rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 .config-note ul {
@@ -479,7 +862,7 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 0.375rem;
   padding: 0.75rem;
-  background: #f9fafb;
+  background: #FDEAD6;
 }
 
 .log-header-entry {
@@ -514,12 +897,29 @@ body {
   padding: 2rem;
 }
 
+/* Admin page layout */
+.admin-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.admin-main {
+  flex: 1;
+}
+
+.admin-sidebar {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .admin-header {
   margin-bottom: 2rem;
 }
 
 .admin-header h1 {
-  color: #2563eb;
+  color: #B7771C;
   margin-bottom: 0.5rem;
 }
 
@@ -575,8 +975,8 @@ body {
 }
 
 .admin-info {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.5rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
@@ -584,11 +984,11 @@ body {
 
 .admin-info h3 {
   margin-bottom: 1rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 .admin-info code {
-  background: #e0f2fe;
+  background: #FDBA74;
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
@@ -604,6 +1004,542 @@ body {
 .dev-note h3 {
   margin-bottom: 0.5rem;
   color: #92400e;
+}
+
+/* Persona Modal Overlay Fixes */
+/* Ensure the site remains visible when Persona modal is open */
+.persona-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.3) !important; /* Semi-transparent instead of opaque */
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Target Persona's specific modal elements */
+[data-persona-modal] {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Ensure Persona modal backdrop doesn't completely obscure content */
+.persona-modal-backdrop,
+.persona-modal-overlay,
+[class*="persona-modal"],
+[class*="persona-overlay"] {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(2px) !important;
+}
+
+/* Ensure the main content remains visible and accessible */
+.app {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* When Persona modal is open, ensure site content is still visible */
+body.persona-modal-open {
+  overflow: hidden;
+}
+
+body.persona-modal-open .app {
+  opacity: 0.7; /* Slightly dim the background but keep it visible */
+  pointer-events: none; /* Prevent interaction with background */
+}
+
+body.persona-modal-open .app-header {
+  opacity: 1 !important; /* Keep header fully visible */
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+  position: relative !important;
+}
+
+/* Additional styles for when Persona modal is active */
+body.persona-modal-active {
+  /* Ensure the site content remains visible */
+}
+
+body.persona-modal-active .app {
+  /* Keep the main app visible with reduced opacity */
+  opacity: 0.8 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* Override any Persona modal styles that might hide content */
+body.persona-modal-active * {
+  /* Ensure no element becomes completely invisible */
+}
+
+body.persona-modal-active .persona-modal-indicator {
+  /* Make sure our indicator is always visible */
+  opacity: 1 !important;
+  z-index: 10001 !important;
+}
+
+/* Add a visual indicator that the site is still there */
+.persona-modal-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #FDBA74;
+  color: #B7771C;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  z-index: 10001;
+  pointer-events: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* Marketplace Grid */
+.marketplace-grid {
+  padding: 2rem;
+}
+
+.marketplace-header {
+  margin-bottom: 2rem;
+}
+
+.marketplace-header h2 {
+  color: #B7771C;
+  margin-bottom: 0.5rem;
+}
+
+.marketplace-header p {
+  color: #6b7280;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.item-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+}
+
+.item-card:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.item-card.purchased {
+  opacity: 0.8;
+  position: relative;
+}
+
+.purchased-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.purchased-badge {
+  background: #059669;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.item-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-condition {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.item-content {
+  padding: 1rem;
+}
+
+.item-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.item-description {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-details {
+  margin-bottom: 1rem;
+}
+
+.item-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #059669;
+  margin-bottom: 0.25rem;
+}
+
+.item-seller {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.item-location {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buy-button {
+  flex: 1;
+  background: #FDBA74;
+  color: #B7771C;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.buy-button:hover:not(:disabled) {
+  background: #FBBE7E;
+}
+
+.buy-button.disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.message-button {
+  flex: 1;
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.message-button:hover {
+  background: #FCE8D1;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+  color: #374151;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.close-button:hover {
+  color: #374151;
+}
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+.item-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.item-image-large {
+  position: relative;
+}
+
+.item-image-large img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+.item-image-large .item-condition {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.item-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.item-info .item-description {
+  color: #6b7280;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.meta-value {
+  color: #6b7280;
+}
+
+.meta-value.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.kyc-status {
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kyc-status h4 {
+  margin-bottom: 0.5rem;
+  color: #B7771C;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.confirm-purchase-button {
+  background: #FDBA74;
+  color: #B7771C;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirm-purchase-button:hover:not(:disabled) {
+  background: #FBBE7E;
+}
+
+.confirm-purchase-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.verification-note {
+  text-align: center;
+  color: #6b7280;
+}
+
+.already-purchased {
+  text-align: center;
+  padding: 1rem;
+}
+
+.purchased-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  color: #B7771C;
+  font-weight: 600;
+}
+
+.purchased-icon {
+  font-size: 1.25rem;
+  color: #059669;
+}
+
+.verified-user-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.verified-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  color: #166534;
+  font-weight: 500;
+}
+
+.verified-icon {
+  font-size: 1.25rem;
+  color: #059669;
+}
+
+.confirm-purchase-button.verified {
+  background: #059669;
+}
+
+.confirm-purchase-button.verified:hover:not(:disabled) {
+  background: #047857;
+}
+
+/* Success Modal */
+.success-modal {
+  max-width: 400px;
+}
+
+.success-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.success-content h2 {
+  color: #059669;
+  margin-bottom: 1rem;
+}
+
+.success-content p {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.success-content .close-button {
+  background: #FDBA74;
+  color: #B7771C;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.success-content .close-button:hover {
+  background: #FBBE7E;
 }
 
 /* Responsive */
@@ -626,7 +1562,109 @@ body {
     display: none;
   }
   
+  /* Progress pills responsive */
+  .progress-pills {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+  }
+  
+  .pill:not(:last-child)::after {
+    display: none;
+  }
+  
+  .pill-circle {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .pill-title {
+    font-size: 0.75rem;
+  }
+  
+  /* Onboarding steps responsive */
+  .onboarding-step {
+    padding: 1rem;
+  }
+  
+  .step-content h2 {
+    font-size: 1.25rem;
+  }
+  
+  .step-description {
+    font-size: 0.875rem;
+  }
+  
+  .primary-button {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  /* Toast responsive */
+  .toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .toast {
+    min-width: auto;
+    max-width: none;
+    font-size: 0.875rem;
+  }
+  
+  /* Bank account form responsive */
+  .bank-account-form {
+    padding: 1rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 0.5rem;
+  }
+  
+  .step-actions {
+    margin-top: 1rem;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
   .status-cards {
     grid-template-columns: 1fr;
+  }
+  
+  .persona-modal-indicator {
+    top: 10px;
+    right: 10px;
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .items-grid {
+    grid-template-columns: 1fr;
+    max-height: 60vh;
+  }
+  
+  .item-details-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .item-image-large img {
+    height: 200px;
+  }
+  
+  .modal {
+    margin: 0.5rem;
+    max-height: 95vh;
   }
 }
