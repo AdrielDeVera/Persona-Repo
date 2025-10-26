@@ -11,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
+  background-color: #FCE8D1;
   color: #333;
 }
 
@@ -31,7 +31,7 @@ body {
 
 .app-header h1 {
   margin-bottom: 1rem;
-  color: #2563eb;
+  color: #B7771C;
 }
 
 .nav-tabs {
@@ -49,13 +49,14 @@ body {
 }
 
 .nav-tabs button:hover {
-  background: #f9fafb;
+  background: #FCE8D1;
 }
 
 .nav-tabs button.active {
-  background: #2563eb;
-  color: white;
-  border-color: #2563eb;
+  background: #FDBA74;
+  color: #B7771C;
+  border-color: #FDBA74;
+  font-weight: 600;
 }
 
 /* Main content */
@@ -90,7 +91,7 @@ body {
 }
 
 .demo-header h1 {
-  color: #2563eb;
+  color: #B7771C;
   margin-bottom: 0.5rem;
 }
 
@@ -105,7 +106,7 @@ body {
   padding: 2rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background: #f9fafb;
+  background: #FDEAD6;
 }
 
 .buyer-modal h2 {
@@ -114,19 +115,19 @@ body {
 }
 
 .verify-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .verify-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .verify-button:disabled {
@@ -194,7 +195,7 @@ body {
   justify-content: space-between;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: #FDEAD6;
   border-radius: 0.5rem;
 }
 
@@ -243,8 +244,9 @@ body {
 }
 
 .pill.current .pill-circle {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
+  font-weight: 700;
 }
 
 .pill.disabled .pill-circle {
@@ -291,19 +293,19 @@ body {
 }
 
 .primary-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .primary-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .primary-button:disabled,
@@ -331,7 +333,7 @@ body {
 
 /* Bank Account Form */
 .bank-account-form {
-  background: #f9fafb;
+  background: #FDEAD6;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -434,7 +436,7 @@ body {
 
 /* Legacy Bank Account Preview - keeping for backward compatibility */
 .bank-account-preview {
-  background: #f9fafb;
+  background: #FDEAD6;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -484,8 +486,8 @@ body {
 }
 
 .toast.info {
-  border-left: 4px solid #2563eb;
-  background: #f0f9ff;
+  border-left: 4px solid #FDBA74;
+  background: #FDEAD6;
 }
 
 .toast-close {
@@ -519,7 +521,7 @@ body {
   justify-content: space-between;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: #FDEAD6;
   border-radius: 0.5rem;
 }
 
@@ -565,8 +567,9 @@ body {
 }
 
 .step.current .step-number {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
+  font-weight: 700;
 }
 
 .step-title {
@@ -585,7 +588,8 @@ body {
 }
 
 .step.current .step-status {
-  color: #2563eb;
+  color: #B7771C;
+  font-weight: 600;
 }
 
 /* Item badges */
@@ -613,8 +617,8 @@ body {
 }
 
 .badge.small-batch {
-  background: #dbeafe;
-  color: #1e40af;
+  background: #FDEAD6;
+  color: #B7771C;
 }
 
 /* Status badges */
@@ -665,19 +669,19 @@ body {
 }
 
 .guarded-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .guarded-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .guarded-button:disabled {
@@ -712,7 +716,7 @@ body {
   padding: 1.5rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background: #f9fafb;
+  background: #FDEAD6;
 }
 
 .order-section h3,
@@ -724,14 +728,14 @@ body {
 /* Status info */
 .status-info {
   padding: 1rem;
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.375rem;
 }
 
 .status-info h4 {
   margin-bottom: 0.5rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 /* Error messages */
@@ -788,14 +792,14 @@ body {
 .config-note {
   margin-top: 1.5rem;
   padding: 1rem;
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.375rem;
 }
 
 .config-note h4 {
   margin-bottom: 0.5rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 .config-note ul {
@@ -858,7 +862,7 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 0.375rem;
   padding: 0.75rem;
-  background: #f9fafb;
+  background: #FDEAD6;
 }
 
 .log-header-entry {
@@ -915,7 +919,7 @@ body {
 }
 
 .admin-header h1 {
-  color: #2563eb;
+  color: #B7771C;
   margin-bottom: 0.5rem;
 }
 
@@ -971,8 +975,8 @@ body {
 }
 
 .admin-info {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.5rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
@@ -980,11 +984,11 @@ body {
 
 .admin-info h3 {
   margin-bottom: 1rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 .admin-info code {
-  background: #e0f2fe;
+  background: #FDBA74;
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
@@ -1079,14 +1083,15 @@ body.persona-modal-active .persona-modal-indicator {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: rgba(37, 99, 235, 0.9);
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   font-size: 0.875rem;
   z-index: 10001;
   pointer-events: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
 }
 
 /* Marketplace Grid */
@@ -1099,7 +1104,7 @@ body.persona-modal-active .persona-modal-indicator {
 }
 
 .marketplace-header h2 {
-  color: #2563eb;
+  color: #B7771C;
   margin-bottom: 0.5rem;
 }
 
@@ -1232,19 +1237,19 @@ body.persona-modal-active .persona-modal-indicator {
 
 .buy-button {
   flex: 1;
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .buy-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .buy-button.disabled {
@@ -1267,7 +1272,7 @@ body.persona-modal-active .persona-modal-indicator {
 }
 
 .message-button:hover {
-  background: #f9fafb;
+  background: #FCE8D1;
 }
 
 /* Modal Styles */
@@ -1397,8 +1402,8 @@ body.persona-modal-active .persona-modal-indicator {
 }
 
 .kyc-status {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.375rem;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -1406,7 +1411,7 @@ body.persona-modal-active .persona-modal-indicator {
 
 .kyc-status h4 {
   margin-bottom: 0.5rem;
-  color: #0369a1;
+  color: #B7771C;
 }
 
 .modal-actions {
@@ -1416,19 +1421,19 @@ body.persona-modal-active .persona-modal-indicator {
 }
 
 .confirm-purchase-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .confirm-purchase-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 .confirm-purchase-button:disabled {
@@ -1451,12 +1456,12 @@ body.persona-modal-active .persona-modal-indicator {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #FDEAD6;
+  border: 1px solid #FDBA74;
   border-radius: 0.375rem;
   padding: 1rem;
-  color: #0369a1;
-  font-weight: 500;
+  color: #B7771C;
+  font-weight: 600;
 }
 
 .purchased-icon {
@@ -1522,19 +1527,19 @@ body.persona-modal-active .persona-modal-indicator {
 }
 
 .success-content .close-button {
-  background: #2563eb;
-  color: white;
+  background: #FDBA74;
+  color: #B7771C;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 1rem;
 }
 
 .success-content .close-button:hover {
-  background: #1d4ed8;
+  background: #FBBE7E;
 }
 
 /* Responsive */
