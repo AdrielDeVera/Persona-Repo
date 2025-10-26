@@ -2,7 +2,9 @@
 
 A comprehensive React + TypeScript demonstration of Persona KYC integration featuring both **Buyer (modal)** and **Seller (inline)** flows.
 
-> **Note**: This version has been configured with a hardcoded buyer template ID (`itmpl_uHaDfigwShJ4xo4KUVqk14tcjJzU`) for immediate testing of the buyer verification flow.
+<img width="958" height="469" alt="Screenshot 2025-10-26 155806" src="https://github.com/user-attachments/assets/cfb3e0c3-5e1b-4c30-8d3f-83f6ea2d603d" />
+<img width="958" height="471" alt="Screenshot 2025-10-26 155843" src="https://github.com/user-attachments/assets/b13507b3-96b5-47d2-884f-8b14927dfd8a" />
+
 
 ## Features
 
